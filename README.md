@@ -197,12 +197,11 @@ This project demonstrates:
 
 ---
 
-## 🚀 Deployment Tips
+## 🚀 Deployment
 
-- **Backend**: Deploy to Railway, Render, or Fly.io
-- **Frontend**: Deploy to Vercel or Netlify (set `VITE_API_URL` env var)
-- **Database**: MongoDB Atlas (free tier works)
+- **Backend**:https://flowboard-project-management-backend.onrender.com
+- **Frontend**:https://flow-board-project-management-saa-s.vercel.app/ 
+- **Database**: MongoDB Atlas
 
 ---
 
-Built with ❤️ as a full-stack MERN portfolio project.
