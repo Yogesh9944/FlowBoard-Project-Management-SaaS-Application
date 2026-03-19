@@ -2,8 +2,6 @@ const Workspace = require('../models/Workspace');
 const Project = require('../models/Project');
 const User = require('../models/User');
 
-// @desc  Create workspace
-// @route POST /api/workspaces
 const createWorkspace = async (req, res, next) => {
   try {
     const { name, description, icon, color } = req.body;
@@ -22,8 +20,7 @@ const createWorkspace = async (req, res, next) => {
   }
 };
 
-// @desc  Get user's workspaces
-// @route GET /api/workspaces
+
 const getWorkspaces = async (req, res, next) => {
   try {
     const workspaces = await Workspace.find({
@@ -40,8 +37,7 @@ const getWorkspaces = async (req, res, next) => {
   }
 };
 
-// @desc  Get single workspace
-// @route GET /api/workspaces/:id
+
 const getWorkspace = async (req, res, next) => {
   try {
     const workspace = await Workspace.findById(req.params.id)
@@ -63,8 +59,6 @@ const getWorkspace = async (req, res, next) => {
   }
 };
 
-// @desc  Update workspace
-// @route PUT /api/workspaces/:id
 const updateWorkspace = async (req, res, next) => {
   try {
     const workspace = await Workspace.findById(req.params.id);
@@ -92,8 +86,7 @@ const updateWorkspace = async (req, res, next) => {
   }
 };
 
-// @desc  Invite member to workspace
-// @route POST /api/workspaces/:id/invite
+
 const inviteMember = async (req, res, next) => {
   try {
     const { email, role = 'member' } = req.body;
@@ -130,8 +123,6 @@ const inviteMember = async (req, res, next) => {
   }
 };
 
-// @desc  Remove member from workspace
-// @route DELETE /api/workspaces/:id/members/:userId
 const removeMember = async (req, res, next) => {
   try {
     const workspace = await Workspace.findById(req.params.id);
@@ -150,8 +141,7 @@ const removeMember = async (req, res, next) => {
   }
 };
 
-// @desc  Update member role
-// @route PUT /api/workspaces/:id/members/:userId
+
 const updateMemberRole = async (req, res, next) => {
   try {
     const { role } = req.body;
@@ -170,8 +160,7 @@ const updateMemberRole = async (req, res, next) => {
   }
 };
 
-// @desc  Delete workspace
-// @route DELETE /api/workspaces/:id
+
 const deleteWorkspace = async (req, res, next) => {
   try {
     const workspace = await Workspace.findById(req.params.id);
