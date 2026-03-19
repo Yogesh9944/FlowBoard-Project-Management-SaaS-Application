@@ -2,8 +2,7 @@ const Task = require('../models/Task');
 const Board = require('../models/Board');
 const Comment = require('../models/Comment');
 
-// @desc  Get tasks by board
-// @route GET /api/tasks/board/:boardId
+
 const getTasksByBoard = async (req, res, next) => {
   try {
     const tasks = await Task.find({ board: req.params.boardId, isArchived: false })
@@ -16,8 +15,7 @@ const getTasksByBoard = async (req, res, next) => {
   }
 };
 
-// @desc  Get tasks by project (all boards)
-// @route GET /api/tasks/project/:projectId
+
 const getTasksByProject = async (req, res, next) => {
   try {
     const { status, priority, assignedTo, search, overdue } = req.query;
@@ -44,8 +42,7 @@ const getTasksByProject = async (req, res, next) => {
   }
 };
 
-// @desc  Get my assigned tasks (across all workspaces)
-// @route GET /api/tasks/my
+
 const getMyTasks = async (req, res, next) => {
   try {
     const tasks = await Task.find({ assignedTo: req.user._id, isArchived: false, status: { $ne: 'done' } })
@@ -58,8 +55,7 @@ const getMyTasks = async (req, res, next) => {
   }
 };
 
-// @desc  Create task
-// @route POST /api/tasks
+
 const createTask = async (req, res, next) => {
   try {
     const { title, description, boardId, projectId, workspaceId, priority, assignedTo, dueDate, startDate, estimatedHours, labels } = req.body;
@@ -97,8 +93,6 @@ const createTask = async (req, res, next) => {
   }
 };
 
-// @desc  Get single task
-// @route GET /api/tasks/:id
 const getTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id)
@@ -119,8 +113,7 @@ const getTask = async (req, res, next) => {
   }
 };
 
-// @desc  Update task
-// @route PUT /api/tasks/:id
+
 const updateTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -168,8 +161,7 @@ const updateTask = async (req, res, next) => {
   }
 };
 
-// @desc  Move task to different board
-// @route PUT /api/tasks/:id/move
+
 const moveTask = async (req, res, next) => {
   try {
     const { boardId, order } = req.body;
@@ -212,8 +204,6 @@ const moveTask = async (req, res, next) => {
   }
 };
 
-// @desc  Update checklist item
-// @route PUT /api/tasks/:id/checklist/:itemId
 const updateChecklistItem = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -237,8 +227,7 @@ const updateChecklistItem = async (req, res, next) => {
   }
 };
 
-// @desc  Delete task
-// @route DELETE /api/tasks/:id
+
 const deleteTask = async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id);
