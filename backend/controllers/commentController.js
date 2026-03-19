@@ -1,8 +1,7 @@
 const Comment = require('../models/Comment');
 const Task = require('../models/Task');
 
-// @desc  Get comments for task
-// @route GET /api/comments/task/:taskId
+
 const getComments = async (req, res, next) => {
   try {
     const comments = await Comment.find({ task: req.params.taskId, isDeleted: false })
@@ -14,8 +13,7 @@ const getComments = async (req, res, next) => {
   }
 };
 
-// @desc  Create comment
-// @route POST /api/comments
+
 const createComment = async (req, res, next) => {
   try {
     const { taskId, text, mentions, parentComment } = req.body;
@@ -46,8 +44,7 @@ const createComment = async (req, res, next) => {
   }
 };
 
-// @desc  Update comment
-// @route PUT /api/comments/:id
+
 const updateComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
@@ -69,8 +66,7 @@ const updateComment = async (req, res, next) => {
   }
 };
 
-// @desc  Delete comment
-// @route DELETE /api/comments/:id
+
 const deleteComment = async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
@@ -90,8 +86,7 @@ const deleteComment = async (req, res, next) => {
   }
 };
 
-// @desc  Add reaction to comment
-// @route POST /api/comments/:id/react
+
 const addReaction = async (req, res, next) => {
   try {
     const { emoji } = req.body;
