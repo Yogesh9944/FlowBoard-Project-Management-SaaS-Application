@@ -1,8 +1,7 @@
 const Board = require('../models/Board');
 const Task = require('../models/Task');
 
-// @desc  Get boards for a project
-// @route GET /api/boards/project/:projectId
+
 const getBoardsByProject = async (req, res, next) => {
   try {
     const boards = await Board.find({ project: req.params.projectId }).sort('order');
@@ -12,8 +11,6 @@ const getBoardsByProject = async (req, res, next) => {
   }
 };
 
-// @desc  Create board
-// @route POST /api/boards
 const createBoard = async (req, res, next) => {
   try {
     const { name, projectId, workspaceId, color } = req.body;
@@ -27,8 +24,7 @@ const createBoard = async (req, res, next) => {
   }
 };
 
-// @desc  Update board
-// @route PUT /api/boards/:id
+
 const updateBoard = async (req, res, next) => {
   try {
     const board = await Board.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -39,8 +35,7 @@ const updateBoard = async (req, res, next) => {
   }
 };
 
-// @desc  Delete board
-// @route DELETE /api/boards/:id
+
 const deleteBoard = async (req, res, next) => {
   try {
     const board = await Board.findById(req.params.id);
@@ -56,8 +51,7 @@ const deleteBoard = async (req, res, next) => {
   }
 };
 
-// @desc  Reorder boards
-// @route PUT /api/boards/reorder
+
 const reorderBoards = async (req, res, next) => {
   try {
     const { boards } = req.body; // [{ id, order }]
