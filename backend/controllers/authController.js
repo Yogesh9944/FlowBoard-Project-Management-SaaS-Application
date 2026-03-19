@@ -1,9 +1,7 @@
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
 
-// @desc  Register user
-// @route POST /api/auth/register
-// @access Public
+
 const register = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -32,9 +30,7 @@ const register = async (req, res, next) => {
   }
 };
 
-// @desc  Login user
-// @route POST /api/auth/login
-// @access Public
+
 const login = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -71,9 +67,7 @@ const login = async (req, res, next) => {
   }
 };
 
-// @desc  Get current user
-// @route GET /api/auth/me
-// @access Private
+
 const getMe = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
@@ -83,9 +77,7 @@ const getMe = async (req, res, next) => {
   }
 };
 
-// @desc  Update profile
-// @route PUT /api/auth/profile
-// @access Private
+
 const updateProfile = async (req, res, next) => {
   try {
     const { name, avatar } = req.body;
@@ -101,9 +93,6 @@ const updateProfile = async (req, res, next) => {
   }
 };
 
-// @desc  Change password
-// @route PUT /api/auth/change-password
-// @access Private
 const changePassword = async (req, res, next) => {
   try {
     const { currentPassword, newPassword } = req.body;
