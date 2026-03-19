@@ -10,8 +10,6 @@ const DEFAULT_BOARDS = [
   { name: 'Done', color: '#22c55e', order: 3 },
 ];
 
-// @desc  Create project
-// @route POST /api/projects
 const createProject = async (req, res, next) => {
   try {
     const { title, description, workspaceId, color, icon, priority, startDate, endDate } = req.body;
@@ -52,8 +50,7 @@ const createProject = async (req, res, next) => {
   }
 };
 
-// @desc  Get projects in workspace
-// @route GET /api/projects/workspace/:workspaceId
+
 const getProjectsByWorkspace = async (req, res, next) => {
   try {
     const { workspaceId } = req.params;
@@ -65,7 +62,6 @@ const getProjectsByWorkspace = async (req, res, next) => {
       .populate('members.user', 'name email avatar')
       .sort('-createdAt');
 
-    // Get task counts for each project
     const projectsWithStats = await Promise.all(
       projects.map(async (p) => {
         const totalTasks = await Task.countDocuments({ project: p._id, isArchived: false });
@@ -89,8 +85,7 @@ const getProjectsByWorkspace = async (req, res, next) => {
   }
 };
 
-// @desc  Get single project
-// @route GET /api/projects/:id
+
 const getProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id)
@@ -105,8 +100,7 @@ const getProject = async (req, res, next) => {
   }
 };
 
-// @desc  Update project
-// @route PUT /api/projects/:id
+
 const updateProject = async (req, res, next) => {
   try {
     const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
@@ -121,8 +115,7 @@ const updateProject = async (req, res, next) => {
   }
 };
 
-// @desc  Delete project
-// @route DELETE /api/projects/:id
+
 const deleteProject = async (req, res, next) => {
   try {
     const project = await Project.findById(req.params.id);
@@ -141,8 +134,7 @@ const deleteProject = async (req, res, next) => {
   }
 };
 
-// @desc  Get project dashboard stats
-// @route GET /api/projects/:id/stats
+
 const getProjectStats = async (req, res, next) => {
   try {
     const { id } = req.params;
