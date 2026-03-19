@@ -1,0 +1,15 @@
+{
+  "name": "flowboard",
+  "version": "1.0.0",
+  "description": "FlowBoard - Full Stack Project Management SaaS",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "setup": "cp backend/.env.example backend/.env && echo '✅ .env created. Edit backend/.env with your MongoDB URI and JWT secret.'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
